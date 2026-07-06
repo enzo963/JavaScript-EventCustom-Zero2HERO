@@ -1,16 +1,17 @@
+````md
+# The usual events in JS
 
-** The usually events in JS it's**
     - click
     - input
     - submit
     - keydown
-    - mousemove 
+    - mousemove
 
-All of these events and we call it ** Built -in Events **
+All of these events and we call it ** Built -in Events **.
 
-    But what if we want create events by our selves like:
+But what if we want create events by our selves like:
 
-```
+```text
 playerDead
 
 userLogin
@@ -20,333 +21,284 @@ cartUpdated
 themeChanged
 
 courseFinished
+````
 
-```
+In **JS** we can create events.
 
+So now we have **2 types of events in JS**:
 
-In ** JS ** we can create events 
-
-So now we have 2 types of events in ** JS **
-
-    - 1 Event - in JS by default
-- 2 Custom Event - you create it in JS 
-
-
-### Keywords
-
-1 - Event
-2 - CustomEvent
-3 - dispatchEvent()
-    - this is most important Keywords in JS, It function is to trigger the event.
-	
-4 - addEventListener()
-    - this Keywords working with CustomEvent 
-
-5 - new CustomEvent()
-    - this create the event for the first one. 
-
-6 - detail
-        - this is the most important
-
-
---- 
-
-### dispatchEvent()
-
-Example
-
-    ```js 
-
-button.dispatchEvent(event)
-
-// Run this event now.
-
-```
-
-
-
-### addEventListener()
-
-Example
-
-    ```js
-
-button.addEventListener("gameOver", ...)
-
-// if 
-
-```
-
-
-
-### new CustomEvent()
-
-Example
-
-    ``` js
-
-const event = new CustomEvent("gameOver")
-
-// now you have an event -> gameOver
-
-```
-
-
-
-### detail
-
-Example
-
-    ```js 
-
-detail 
-  |
-  v
-  
-//these are the data may you send it inside the meassge Like : 
-
-// 1- score : 900   
-// 2- usenmae : Enzo 
-// 3- them : dark 
-
-
-// The form it's like this : 
-
-new CustomEvent("login", {
-
-detail : {
-name: "ENZO"
-}
-
-}) 
-
-
-// and inside the listener : 
-
-button.addEventListener("",{
-	console.log(e.detail);
-	//OR 
-	console.log(event.detail);
-} ) 
-
-
-  
-
-```
-
+1. Event in JS by default
+2. Custom Event - you create it in JS
 
 ---
 
+# Keywords
 
-## So now we have
+### 1. Event
 
+### 2. CustomEvent
 
-    | ** keywords **     | ** The  Function **             |
+### 3. dispatchEvent()
+
+* This is the most important keyword in JS.
+* Its function is to trigger the event.
+
+### 4. addEventListener()
+
+* This keyword works with `CustomEvent`.
+
+### 5. new CustomEvent()
+
+* This creates the event for the first time.
+
+### 6. detail
+
+* This is the most important.
+
+---
+
+# dispatchEvent()
+
+### Example
+
+```js
+button.dispatchEvent(event);
+
+// Run this event now.
+```
+
+---
+
+# addEventListener()
+
+### Example
+
+```js
+button.addEventListener("gameOver", ...);
+
+// if
+```
+
+---
+
+# new CustomEvent()
+
+### Example
+
+```js
+const event = new CustomEvent("gameOver");
+
+// Now you have an event -> gameOver
+```
+
+---
+
+# detail
+
+### Example
+
+```js
+detail
+    |
+    v
+
+// These are the data you may send inside the message like:
+
+// 1- score: 900
+// 2- username: Enzo
+// 3- theme: dark
+
+// The form is like this:
+
+new CustomEvent("login", {
+    detail: {
+        name: "ENZO"
+    }
+});
+
+// And inside the listener:
+
+button.addEventListener("", (event) => {
+    console.log(event.detail);
+
+    // OR
+
+    console.log(event.detail);
+});
+```
+
+---
+
+# So now we have
+
+| **Keyword**      | **The Function**              |
 | ---------------- | ----------------------------- |
-| Event | Witch event |
-| CustomEvent | An event from your own making |
-| dispatchEvent | Trigger the event |
-| addEventListener | Waiting the event |
-| detail | load data |
-| event.detail | Read data |
+| Event            | Which event                   |
+| CustomEvent      | An event from your own making |
+| dispatchEvent    | Trigger the event             |
+| addEventListener | Waiting for the event         |
+| detail           | Load data                     |
+| event.detail     | Read data                     |
 
+---
 
-    ---
+# Examples
 
-# Examples 
+# Example 1
 
-## Example 1
-
-
-    ```JS 
-
+```js
 const btn = document.getElementById("btn");
 
 btn.addEventListener("hello", () => {
-	console.log("Hello Evnet!");
+    console.log("Hello Event!");
 });
 
 const myEvent = new CustomEvent("hello");
 
-btn.dispatchEvnet(myEvent);
-
-
+btn.dispatchEvent(myEvent);
 ```
 
-So What's happen here 
+So what's happen here:
 
+```text
 1 - We create the Event
     |
-  |
     v
 2 - hello
     |
-  |
     v
 3 - We listened to it
     |
-  |
     v
 4 - We trigger it
     |
-  |
     v
-5 - The Results
+5 - The Result
+    ```
 
-    ```js
+```js
 Hello Event!
-```
-
+    ```
 
 ---
 
+# Example 2 - Change the name
 
-## Example 2 - Change the name
+```js
+const alarm = new CustomEvent("alarm");
 
-    ```js 
-
-cosnt alarm = new CustomEvent("alarm");
-
-document.addEventListener("alarm", ()=> {
-	console.log("Danger!"); 
+document.addEventListener("alarm", () => {
+    console.log("Danger!");
 });
 
 document.dispatchEvent(alarm);
 
-// The Result is - Danger! - 
-
+// The Result is - Danger! -
 ```
-
-
 
 ---
 
-## Example 3 - Send Data
+# Example 3 - Send Data
 
-    ```js
+```js
+// Send the data
 
-// Send the data 
-cosnt loginEvnet = neew CustomEvent("login", {
-	detail: 
-		username: "ENZO"
-
+const loginEvent = new CustomEvent("login", {
+    detail: {
+        username: "ENZO"
+    }
 });
 
-// New we have to listen for this event(data)
+// Now we have to listen for this event (data)
 
-doucment.addEventLister("login",(e) => {
-	console.log(e.detail.usename);
+document.addEventListener("login", (e) => {
+    console.log(e.detail.username);
 });
 
+// Now we have to run this event
 
-// Now we have to Run this Event 
+document.dispatchEvent(loginEvent);
 
-document.dispatchEvent(loginEvnet);
-
-// The Result 
+// The Result
 
 ENZO
-
-```
-
-
+    ```
 
 ---
 
-## Example 3 - Send a lot of Data
+# Example 4 - Send a lot of Data
 
-    ```js
+```js
+// Send
 
-// Send 
-
-cosnt scoreEvent = new CustomEvent("gameFinished", {
-
-	detail : {
-		player : "Enzo",
-		score  : 900,
-		level  : 15 
-}
-
+const scoreEvent = new CustomEvent("gameFinished", {
+    detail: {
+        player: "Enzo",
+        score: 900,
+        level: 15
+    }
 });
-
-
-// Listener 
-
-document.addEventListener("gameFinished", (e)=> {
-	console.log(e.detail.player);
-	console.log(e.detail.score );
-	console.log(e.detail.level );
-});
-
-
-// The Result 
-/*
-	Enzo
-	900
-	15
-*/
-
-```
-
-
----
-
-## Example 4 - Real example(Store)
-
-    ```js
-
-
-// Send 
-const cartUpdated = new CustomEvent("cartUpdated", {
-	detail:{
-		items:5
-	}
-});
-
 
 // Listener
 
-document.addEventListener("cartUpdated", (e)=> {
-	console.log(
-	`Item: ${ e.detail.itmes } `
-	);
+document.addEventListener("gameFinished", (e) => {
+    console.log(e.detail.player);
+    console.log(e.detail.score);
+    console.log(e.detail.level);
 });
 
-document.dispatchEvent(carUpdataed);
+// The Result
 
-
+/*
+Enzo
+900
+15
+*/
 ```
-
-
 
 ---
 
-## Example 5 - May listeners for one event
+# Example 5 - Real example (Store)
 
+```js
+// Send
 
-    ```js
+const cartUpdated = new CustomEvent("cartUpdated", {
+    detail: {
+        items: 5
+    }
+});
 
+// Listener
+
+document.addEventListener("cartUpdated", (e) => {
+    console.log(`Item: ${e.detail.items}`);
+});
+
+document.dispatchEvent(cartUpdated);
+```
+
+---
+
+# Example 6 - Many listeners for one event
+
+```js
 const event = new CustomEvent("gameOver");
 
 document.addEventListener("gameOver", () => {
-	console.log("Show Game Over screen");
+    console.log("Show Game Over screen");
 });
 
 document.addEventListener("gameOver", () => {
-	console.log("Play sad music");
+    console.log("Play sad music");
 });
 
 document.addEventListener("gameOver", () => {
-	console.log("Save score");
+    console.log("Save score");
 });
 
-
-documet.dispatchEvent(event);
-
+document.dispatchEvent(event);
 ```
 
-
-
-
-
-
+```
+    ```
